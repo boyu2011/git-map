@@ -1,0 +1,39 @@
+<br/>
+<h1><%= link_to 'Git Map', root_path %></h1>
+<br/>
+
+<%= form_tag('/home', :method => "get") do %>
+  	<%= #label_tag(:search, "Search [user/repo] : ") 
+  	%>
+  	<%= text_field_tag(:search, nil, placeholder: 'Enter user/repo to discover where are the developers.', :size => 80) %>
+  	<%= submit_tag("Search") %>
+<% end %>
+
+<% 
+	if @search == nil or @search == ''
+%>
+<%
+	elsif @search == @empty_search_warning
+%>	
+		<p><%= @search %></p>
+<% 
+	elsif (@error.instance_of? Octokit::NotFound)
+%>
+		<p>Error : <%= @error_msg %></p>
+<%
+	else
+%>
+		
+		<p>Repository : <%= @search %>.</p>
+		<p>Located <%= @valid_user_count %> Valid Developers.</p>
+		<!--
+		<p>Total Developers: <%= @total_user_count %></p>
+		
+		-->
+<%=
+		gmaps("markers" => { "data" => @markers, "options" => { "do_clustering" => true, "randomize" => true, "width" => 40, "height" => 40 } },
+			  "map_options" => { :container_class => "map", "center_longitude" => 180, "zoom" => 3, "auto_adjust" => true})
+%>
+<%
+	end
+%>
