@@ -23,13 +23,10 @@
 <%
 	else
 %>
-		
 		<p>Repository : <%= @search %>.</p>
 		<p>Located <%= @valid_user_count %> Valid Developers.</p>
-		<!--
 		<p>Total Developers: <%= @total_user_count %></p>
-		
-		-->
+
 <%=
 		gmaps("markers" => { "data" => @markers, "options" => { "do_clustering" => true, "randomize" => true, "width" => 40, "height" => 40 } },
 			  "map_options" => { :container_class => "map", "center_longitude" => 180, "zoom" => 3, "auto_adjust" => true})

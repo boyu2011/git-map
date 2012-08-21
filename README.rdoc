@@ -1,6 +1,6 @@
 ==Git Map
 
-Git Map can help you find developers who play with github. 
+Git Map can help you find developers who play with projects on the github. 
 
 
           Developer: Bo Yu (boyu2011@gmail.com)

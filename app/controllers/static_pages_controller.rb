@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-	
+
 	def home
 
 		@search = params[:search]
@@ -53,7 +53,8 @@ class StaticPagesController < ApplicationController
 				          		@valid_user_count += 1
 				          		puts @valid_user_count.to_s + '  ' + user.location.to_s + '  ' + coordinates.to_s
 
-				          		#break if @valid_user_count == 100
+				          		# prevent user from wating too long
+				          		break if @valid_user_count == 500	
 				          	end
 				        end
 				    end
@@ -63,8 +64,7 @@ class StaticPagesController < ApplicationController
 
 			@markers += "]"
 
-			#puts @markers
-			puts 
+			#puts @markers 
 		end
 	end
 end
